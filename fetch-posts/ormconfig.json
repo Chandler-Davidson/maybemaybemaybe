@@ -1,0 +1,15 @@
+{
+  "type": "sqlite",
+  "database": "./out/data/data.sqlite",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+     "out/entity/**/*.js"
+  ],
+  "migrations": [
+     "out/migration/**/*.js"
+  ],
+  "subscribers": [
+     "out/subscriber/**/*.js"
+  ]
+}
