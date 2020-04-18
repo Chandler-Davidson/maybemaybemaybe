@@ -1,25 +1,17 @@
 import "reflect-metadata";
+import "./lib/env";
+
 import { createConnection } from "typeorm";
-import { Post } from "./entity/Post";
-import { getTopPosts } from "./reddit/getPosts";
-import saveArray from "./entity/saveArray";
+import { getTopPosts, getHotPosts } from "./reddit/getPosts";
+import storePosts from "./reddit/storePosts";
 
 const subreddits = [
   'yesyesyesno',
   'nonononoyes'
 ];
 
-async function storeTopPosts() {
-  try {
-    const connection = await createConnection();
-    const topPosts = await Promise.all(subreddits.map(getTopPosts));
+const view = process.argv[2];
+const func = view === "top" ? getTopPosts : getHotPosts;
 
-    saveArray(connection, topPosts.flat());
-  }
-  catch (ex) {
-    console.error(ex);
-  }
-}
-
-
-storeTopPosts();
+const connection = createConnection();
+storePosts(connection, func, subreddits);
