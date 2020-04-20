@@ -28,4 +28,7 @@ export class Post extends BaseEntity {
 
   @Column()
   isVideo!: boolean;
+
+  @Column()
+  media!: string;
 }
