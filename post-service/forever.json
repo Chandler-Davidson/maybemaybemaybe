@@ -1,0 +1,7 @@
+{
+  "uid": "post-service",
+  "append": true,
+  "script": "./out/index.js",
+  "spinSleepTime": 1000,
+  "minUptime": 1000
+ }

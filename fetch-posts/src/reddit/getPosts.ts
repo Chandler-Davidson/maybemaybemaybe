@@ -3,7 +3,7 @@ import { Submission } from "snoowrap";
 import { Post } from "../entity/Post";
 
 export async function getTopPosts(subreddit: string) {
-  const submissions = await reddit.getTop(subreddit)
+  const submissions = await reddit.getTop(subreddit, {limit: 100})
   return submissions.map(submissionToPost);
 }
 
@@ -22,7 +22,9 @@ function submissionToPost(submission: Submission): Post {
   post.url = submission.url;
   post.createdUtc = submission.created_utc.toString();
   post.isVideo = submission.is_video;
-  post.media = submission.media?.reddit_video?.fallback_url as string;
+
+  if (submission.media && submission.media.reddit_video)
+    post.media = submission.media.reddit_video.fallback_url as string;
 
   return post;
 }
