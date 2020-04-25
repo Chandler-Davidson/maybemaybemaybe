@@ -2,17 +2,18 @@ import "reflect-metadata";
 
 import express from "express";
 import cors from "cors";
-import { createConnection } from "typeorm";
 import { findNewPosts } from "./findPosts"
+import { createConnection } from "typeorm";
 
 const app = express();
 const port = 4000;
-const connection = createConnection();
+createConnection();
 
 app.use(cors());
 
 app.get("/", async (req, res) => {
-  res.send(await findNewPosts(connection, 3))
+  const posts = await findNewPosts(3);
+  res.send(posts)
 });
 
 app.listen(port, () => console.log(`Listening: ${port}`));

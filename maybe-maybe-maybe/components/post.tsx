@@ -1,20 +1,21 @@
 import { Post } from "../models/Post";
 import { useState } from "react";
+import Link from "next/link";
 
 const PostComponent = (props: { post: Post }) => {
-  const { title, author, subreddit, upvotes, media } = props.post;
-
-  console.log(props.post);
+  const { title, author, subreddit, upvotes, media, url } = props.post;
 
   const [isHidden, setHidden] = useState(true);
   const showSubreddit = () => setHidden(!isHidden);
 
   return (
     <div className="post">
-      <h3>{title}</h3>
-      <video width="320" height="240" controls autoPlay>
-        <source src={media} type="video/mp4" />
-      </video>
+      <a href={url}>
+        <h3>{title}</h3>
+      </a>
+
+      <video autoPlay loop controls src={media} />
+
       <div className="details">
         <div className="subDetails">
           <p>{author}</p>
@@ -39,6 +40,11 @@ const PostComponent = (props: { post: Post }) => {
         flex-direction: row;
         justify-content: space-between;
         width: 55%;
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
       }
     `}</style>
     </div>

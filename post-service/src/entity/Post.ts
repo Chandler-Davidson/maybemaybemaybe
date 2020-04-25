@@ -1,9 +1,9 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Entity, Column, BaseEntity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Post extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id!: string;
+  @PrimaryColumn()
+  redditId!: string;
 
   @Column()
   title!: string;
@@ -13,9 +13,6 @@ export class Post extends BaseEntity {
 
   @Column()
   upvotes!: number;
-
-  @Column({ unique: true })
-  redditId!: string;
 
   @Column()
   author!: string;
@@ -28,4 +25,7 @@ export class Post extends BaseEntity {
 
   @Column()
   isVideo!: boolean;
+
+  @Column({ nullable: true })
+  media!: string;
 }
