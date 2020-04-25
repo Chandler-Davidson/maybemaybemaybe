@@ -22,6 +22,7 @@ function submissionToPost(submission: Submission): Post {
   post.url = submission.url;
   post.createdUtc = submission.created_utc.toString();
   post.isVideo = submission.is_video;
+  post.media = submission.media?.reddit_video?.fallback_url as string;
 
   return post;
 }
