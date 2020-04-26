@@ -1,7 +1,6 @@
 {
   "type": "sqlite",
   "database": "../fetch-posts/out/data/data.sqlite",
-  "OLDdatabase": "./out/data/data.sqlite",
   "synchronize": true,
   "logging": false,
   "entities": [

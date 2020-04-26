@@ -1,6 +1,5 @@
 import { Post } from "./entity/Post";
-import { Connection, getConnection } from "typeorm";
-import { repeat, getRandomNumber } from "./Utils";
+import { getConnection } from "typeorm";
 
 export async function findNewPosts(limit: number): Promise<Post[] | undefined> {
   try {
@@ -14,9 +13,4 @@ export async function findNewPosts(limit: number): Promise<Post[] | undefined> {
   catch (error) {
     console.error(error);
   }
-}
-
-async function getRandomIds(connection: Connection, limit: number) {
-  const numOfRecords = await connection.manager.count(Post);
-  return repeat(() => getRandomNumber(1, numOfRecords), limit)
 }

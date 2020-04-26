@@ -18,7 +18,7 @@ export default async function getNextPost() {
 }
 
 async function fetchPosts(): Promise<Post[]> {
-  const response = await Axios.get('http://localhost:4000');
+  const response = await Axios.get('http://136.53.66.122:4000');
 
   if (!Array.isArray(response.data))
     throw "Invalid response";
