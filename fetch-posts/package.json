@@ -7,8 +7,7 @@
     "build": "tsc",
     "fetch-hot": "node ./out/index.js hot",
     "fetch-top": "node ./out/index.js top",
-    "dev": "run-s build fetch-hot",
-    "production": "run-s build fetch-hot fetch-top"
+    "dev": "run-s build fetch-hot"
   },
   "author": "",
   "license": "ISC",

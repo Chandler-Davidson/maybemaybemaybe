@@ -1,14 +1,13 @@
 {
-   "type": "postgres",
-   "host": "localhost",
-   "port": 5432,
-   "username": "admin",
-   "password": "password",
-   "database": "postgres",
-   "synchronize": true,
-   "logging": false,
-   "entities": ["out/entity/**/*.js"],
-   "migrations": ["out/migration/**/*.js"],
-   "subscribers": ["out/subscriber/**/*.js"]
- }
- 
+  "type": "postgres",
+  "host": "posts-db",
+  "port": 5432,
+  "username": "admin",
+  "password": "password",
+  "database": "postgres",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["out/entity/**/*.js"],
+  "migrations": ["out/migration/**/*.js"],
+  "subscribers": ["out/subscriber/**/*.js"]
+}

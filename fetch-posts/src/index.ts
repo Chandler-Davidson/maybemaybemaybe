@@ -14,8 +14,12 @@ const view = process.argv[2];
 const func = view === "top" ? getTopPosts : getHotPosts;
 
 async function main() {
-  const connection = await createConnection();
-  storePosts(connection, func, subreddits);
+  try {
+    const connection = await createConnection();
+    storePosts(connection, func, subreddits);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 main();

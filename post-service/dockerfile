@@ -8,4 +8,4 @@ COPY . /app
 
 RUN npm run build
 
-CMD node /app/out/index.js top
+CMD node /app/out/index.js

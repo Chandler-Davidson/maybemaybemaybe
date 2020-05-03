@@ -1,7 +1,6 @@
 version: '3'
-
 services:
-  db:
+  posts-db:
     image: postgres
     restart: always
     ports:
@@ -10,3 +9,17 @@ services:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "password"
       POSTGRES_DATABASE: "posts"
+
+  fetch-posts:
+    build: ./fetch-posts/
+    depends_on:
+      - posts-db
+    command: bash -c 'while !</dev/tcp/posts-db/5432; do sleep 1; done; node /app/out/index.js top'
+
+  post-service:
+    build: ./post-service/
+    depends_on: 
+      - posts-db
+    ports: 
+      - "4000:4000"
+    command: bash -c 'while !</dev/tcp/posts-db/5432; do sleep 1; done; node /app/out/index.js'
