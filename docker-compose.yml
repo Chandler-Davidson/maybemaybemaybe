@@ -3,8 +3,6 @@ services:
   posts-db:
     image: postgres
     restart: always
-    ports:
-      - "5432:5432"
     environment: 
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "password"
@@ -20,6 +18,13 @@ services:
     build: ./post-service/
     depends_on: 
       - posts-db
-    ports: 
+    ports:
       - "4000:4000"
     command: bash -c 'while !</dev/tcp/posts-db/5432; do sleep 1; done; node /app/out/index.js'
+
+  web-app:
+    build: ./maybe-maybe-maybe/
+    depends_on: 
+      - post-service
+    ports:
+      - "5000:5000"
